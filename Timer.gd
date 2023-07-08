@@ -10,4 +10,5 @@ func _process(delta):
 	length -= delta
 	value = length/max_length
 	if(length < 0):
+		emit_signal("finished")
 		queue_free()

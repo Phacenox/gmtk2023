@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bf86ovvfhhrqr"]
+[gd_scene load_steps=41 format=3 uid="uid://bf86ovvfhhrqr"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_ii6ds"]
 [ext_resource type="Texture2D" uid="uid://guo4wwpdbfy3" path="res://Sprite-0002.png" id="1_yxbbt"]
@@ -8,15 +8,25 @@
 [ext_resource type="Theme" uid="uid://cu14boby0ryr8" path="res://fonts/Perfect DOS.tres" id="4_kn2m8"]
 [ext_resource type="Script" path="res://PanelColor.gd" id="5_5465x"]
 [ext_resource type="Script" path="res://ContextMenu.gd" id="6_j6dvm"]
+[ext_resource type="Texture2D" uid="uid://d2m5nq0wxb8wd" path="res://fonts/emeblem0.png" id="6_llham"]
+[ext_resource type="Script" path="res://TextBox.gd" id="7_gdme4"]
+[ext_resource type="Script" path="res://Emblem.gd" id="7_sif4c"]
 [ext_resource type="Texture2D" uid="uid://dj4vol48bolxq" path="res://mo_tiles.png" id="8_uxsdh"]
 [ext_resource type="Script" path="res://alphasway.gd" id="9_21pt5"]
 [ext_resource type="Script" path="res://city.gd" id="9_puunn"]
 [ext_resource type="PackedScene" uid="uid://c28oy6g5avwl4" path="res://destroy_particles.tscn" id="11_juohv"]
+[ext_resource type="Script" path="res://Zoom.gd" id="11_lb1lx"]
 [ext_resource type="PackedScene" uid="uid://c67w86yaqtsjs" path="res://rocket_attack.tscn" id="13_56nfw"]
 [ext_resource type="PackedScene" uid="uid://c0ownkva3ryxq" path="res://rocket_launch.tscn" id="14_gcoul"]
-[ext_resource type="Texture2D" uid="uid://dsocrcv0oet7c" path="res://timer/timer_under.png" id="15_p1ufq"]
-[ext_resource type="Texture2D" uid="uid://q45h4adbfcby" path="res://timer/timer_progress.png" id="16_wxnsn"]
-[ext_resource type="Script" path="res://Timer.gd" id="17_efq3a"]
+[ext_resource type="Script" path="res://EnemyAI.gd" id="14_uolep"]
+[ext_resource type="PackedScene" uid="uid://bw7m5gn07e0kq" path="res://timer/build_timer.tscn" id="15_3h3lg"]
+[ext_resource type="Script" path="res://CombatController.gd" id="16_asr7m"]
+[ext_resource type="PackedScene" uid="uid://rgbllsxm4aic" path="res://landing_zone.tscn" id="16_yexo8"]
+[ext_resource type="Texture2D" uid="uid://cbs5crwres1hi" path="res://starsmask.png" id="17_1e58y"]
+[ext_resource type="Texture2D" uid="uid://bbpy8hwds5gf4" path="res://spaceship.png" id="18_pfog8"]
+[ext_resource type="Script" path="res://Spaceship.gd" id="19_2wvly"]
+[ext_resource type="Texture2D" uid="uid://dst7j7u20calq" path="res://lazer.png" id="19_ou8ug"]
+[ext_resource type="Script" path="res://Lazer.gd" id="20_odq5i"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l37bs"]
 texture = ExtResource("2_o0y6x")
@@ -26,6 +36,12 @@ texture_margin_right = 3.0
 texture_margin_bottom = 3.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ksyi"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0kicb"]
+bg_color = Color(1, 1, 0.32549, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8iaam"]
 texture = ExtResource("1_yxbbt")
@@ -40,6 +56,9 @@ texture = ExtResource("1_yxbbt")
 4:0/size_in_atlas = Vector2i(1, 2)
 4:0/0 = 0
 4:0/0/texture_origin = Vector2i(0, 8)
+5:0/size_in_atlas = Vector2i(1, 2)
+5:0/0 = 0
+5:0/0/texture_origin = Vector2i(0, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aqyke"]
 texture = ExtResource("2_goktk")
@@ -55,16 +74,235 @@ sources/0 = SubResource("TileSetAtlasSource_8iaam")
 sources/1 = SubResource("TileSetAtlasSource_aqyke")
 sources/2 = SubResource("TileSetAtlasSource_xkkbg")
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("tiles", "mouseoverTile", "portraitSprite", "dialogText", "finalTimer", "fstTimer", "UIBase", "contextMenu")]
+[sub_resource type="Animation" id="Animation_680k0"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(32, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(32, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_khfvt"]
+resource_name = "ZoomOut"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(32, -0.25, 0, 0.25, 0, 112, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(32, -0.25, 0, 0.25, 0, 112, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_18cug"]
+_data = {
+"RESET": SubResource("Animation_680k0"),
+"ZoomOut": SubResource("Animation_khfvt")
+}
+
+[sub_resource type="Animation" id="Animation_vq740"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(160, 63)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.39375, 2.39375)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spaceship:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-324, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Lazer:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_sk41s"]
+resource_name = "planetize"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(160, 63), Vector2(160, 160)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2.39375, 2.39375), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spaceship:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.5, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-324, 0), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Lazer:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(-0.3, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bhyon"]
+_data = {
+"RESET": SubResource("Animation_vq740"),
+"planetize": SubResource("Animation_sk41s")
+}
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("tiles", "mouseoverTile", "portraitSprite", "dialogText", "finalTimerText", "fstTimerText", "finalTimer", "fstTimer", "UIBase", "contextMenu", "effectsNode", "enemyAI", "combatController", "playerCity", "enemyCity", "skiptutorialbutton")]
 script = ExtResource("1_ii6ds")
 tiles = NodePath("Tiles")
 mouseoverTile = NodePath("MouseoverTile")
 portraitSprite = NodePath("UI/ColorRect2/Sprite-0001")
 dialogText = NodePath("UI/ColorRect2/Control/RichTextLabel3")
-finalTimer = NodePath("UI/ColorRect/VBoxContainer/ColorRect")
-fstTimer = NodePath("UI/ColorRect/VBoxContainer/ColorRect2")
+finalTimerText = NodePath("UI/ColorRect/Control/RichTextLabel")
+fstTimerText = NodePath("UI/ColorRect/Control/RichTextLabel2")
+finalTimer = NodePath("UI/ColorRect/Control/ColorRect")
+fstTimer = NodePath("UI/ColorRect/Control/ColorRect3")
 UIBase = NodePath("UI")
 contextMenu = NodePath("UI/ContextMenu")
+dropAnimation = ExtResource("16_yexo8")
+effectsNode = NodePath("effects")
+enemyAI = NodePath("Tiles/EnemyAI")
+combatController = NodePath("CombatController")
+playerCity = NodePath("Tiles/PlayerCity")
+enemyCity = NodePath("Tiles/EnemyCity")
+skiptutorialbutton = NodePath("UI/ColorRect2/buttons/PanelContainer")
 
 [node name="Button" type="Button" parent="."]
 offset_left = -6.0
@@ -113,34 +351,134 @@ mouse_filter = 2
 theme = ExtResource("4_kn2m8")
 script = ExtResource("5_5465x")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/ColorRect"]
+[node name="Control" type="Control" parent="UI/ColorRect"]
+clip_contents = true
 layout_mode = 2
 mouse_filter = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/ColorRect/VBoxContainer"]
+[node name="ColorRect4" type="PanelContainer" parent="UI/ColorRect/Control"]
+self_modulate = Color(0.74902, 0.913725, 0.945098, 1)
+clip_contents = true
 layout_mode = 2
-size_flags_vertical = 3
+offset_left = 120.0
+offset_right = 240.0
+offset_bottom = 320.0
 mouse_filter = 2
-text = "Time until our inevitable destruction"
-scroll_active = false
+theme = ExtResource("4_kn2m8")
+script = ExtResource("5_5465x")
 
-[node name="ColorRect" type="ColorRect" parent="UI/ColorRect/VBoxContainer"]
+[node name="Control" type="Control" parent="UI/ColorRect/Control/ColorRect4"]
 layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-color = Color(1, 0, 0, 1)
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="UI/ColorRect/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-text = "Time Until Discovery"
-scroll_active = false
+[node name="Emblem2" type="TextureRect" parent="UI/ColorRect/Control/ColorRect4/Control"]
+self_modulate = Color(0.74902, 0.913725, 0.945098, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -241.0
+offset_top = -120.0
+offset_right = -1.0
+offset_bottom = 120.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("6_llham")
+script = ExtResource("7_sif4c")
 
-[node name="ColorRect2" type="ColorRect" parent="UI/ColorRect/VBoxContainer"]
+[node name="ColorRect5" type="PanelContainer" parent="UI/ColorRect/Control"]
+self_modulate = Color(0.74902, 0.913725, 0.945098, 1)
+clip_contents = true
 layout_mode = 2
+offset_right = 120.0
+offset_bottom = 320.0
+mouse_filter = 2
+theme = ExtResource("4_kn2m8")
+script = ExtResource("5_5465x")
+
+[node name="Control" type="Control" parent="UI/ColorRect/Control/ColorRect5"]
+layout_mode = 2
+
+[node name="Emblem3" type="TextureRect" parent="UI/ColorRect/Control/ColorRect5/Control"]
+self_modulate = Color(0.74902, 0.913725, 0.945098, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -241.0
+offset_top = -120.0
+offset_right = -1.0
+offset_bottom = 120.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("6_llham")
+script = ExtResource("7_sif4c")
+
+[node name="RichTextLabel" type="Label" parent="UI/ColorRect/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 5.99994
+offset_top = 274.0
+offset_right = 231.0
+offset_bottom = 334.0
+grow_horizontal = 2
+rotation = -1.57079
+size_flags_vertical = 3
+text = "Threat Level: 34.34"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ColorRect" type="ProgressBar" parent="UI/ColorRect/Control"]
+self_modulate = Color(0.64902, 0.813725, 0.845098, 1)
+layout_mode = 2
+offset_left = 192.0
+offset_top = 16.0
+offset_right = 224.0
+offset_bottom = 304.0
 size_flags_vertical = 3
 mouse_filter = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_1ksyi")
+max_value = 1.0
+step = 0.001
+value = 0.81
+fill_mode = 2
+show_percentage = false
+script = ExtResource("5_5465x")
+depth = 0.1
+
+[node name="RichTextLabel2" type="Label" parent="UI/ColorRect/Control"]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 264.0
+offset_right = 198.0
+offset_bottom = 324.0
+rotation = -1.57079
+size_flags_vertical = 3
+text = "Energy Use: 3.321/4"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ColorRect3" type="ProgressBar" parent="UI/ColorRect/Control"]
+self_modulate = Color(0.64902, 0.813725, 0.845098, 1)
+layout_mode = 2
+offset_left = 72.0
+offset_top = 16.0
+offset_right = 104.0
+offset_bottom = 304.0
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_0kicb")
+max_value = 1.0
+step = 0.001
+value = 0.4
+fill_mode = 3
+script = ExtResource("5_5465x")
+depth = 0.1
 
 [node name="ColorRect2" type="PanelContainer" parent="UI"]
 self_modulate = Color(0.74902, 0.913725, 0.945098, 1)
@@ -152,16 +490,41 @@ offset_bottom = 448.0
 mouse_filter = 2
 script = ExtResource("5_5465x")
 
-[node name="Sprite-0001" type="Sprite2D" parent="UI/ColorRect2"]
-position = Vector2(40, 40)
-texture = ExtResource("4_4t3r2")
-hframes = 4
-
 [node name="Control" type="Control" parent="UI/ColorRect2"]
+clip_contents = true
 layout_mode = 2
 mouse_filter = 2
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="UI/ColorRect2/Control"]
+[node name="Emblem2" type="TextureRect" parent="UI/ColorRect2/Control"]
+self_modulate = Color(0.74902, 0.913725, 0.945098, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -120.0
+offset_right = 120.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_llham")
+script = ExtResource("7_sif4c")
+
+[node name="PlayfieldOutline2" type="PanelContainer" parent="UI/ColorRect2/Control"]
+self_modulate = Color(0.64902, 0.813725, 0.845098, 1)
+layout_mode = 2
+offset_left = 13.0
+offset_top = 13.0
+offset_right = 67.0
+offset_bottom = 67.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_l37bs")
+script = ExtResource("5_5465x")
+depth = 0.1
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="UI/ColorRect2/Control" node_paths=PackedStringArray("effectsNode", "sprite")]
 layout_mode = 2
 offset_left = 80.0
 offset_top = 16.0
@@ -170,19 +533,59 @@ offset_bottom = 64.0
 mouse_filter = 2
 text = "Please do not resist."
 scroll_active = false
+visible_characters = 65
+visible_ratio = 3.09524
+script = ExtResource("7_gdme4")
+timer = ExtResource("15_3h3lg")
+effectsNode = NodePath("../../..")
+sprite = NodePath("../../Sprite-0001")
 
-[node name="ContextMenu" type="PanelContainer" parent="UI"]
+[node name="Sprite-0001" type="Sprite2D" parent="UI/ColorRect2"]
+position = Vector2(40, 40)
+texture = ExtResource("4_4t3r2")
+hframes = 9
+
+[node name="buttons" type="Control" parent="UI/ColorRect2"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/ColorRect2/buttons"]
+self_modulate = Color(0.74902, 0.913725, 0.945098, 1)
+offset_left = 483.0
+offset_top = 62.0
+offset_right = 585.0
+offset_bottom = 84.0
+script = ExtResource("5_5465x")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/ColorRect2/buttons/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/ColorRect2/buttons/PanelContainer/MarginContainer"]
+layout_mode = 2
+text = "Skip Intro"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Button" type="Button" parent="UI/ColorRect2/buttons/PanelContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="ContextMenu" type="PanelContainer" parent="UI" node_paths=PackedStringArray("playerCity")]
 self_modulate = Color(0.14902, 0.313725, 0.345098, 1)
 z_index = 10
 z_as_relative = false
 layout_mode = 0
-offset_left = 337.0
-offset_top = 62.0
-offset_right = 430.0
-offset_bottom = 128.0
+offset_left = 235.0
+offset_top = 235.0
+offset_right = 328.0
+offset_bottom = 301.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource("6_j6dvm")
+playerCity = NodePath("../../Tiles/PlayerCity")
 depth = 0.6
 
 [node name="Vlist" type="VBoxContainer" parent="UI/ContextMenu"]
@@ -205,7 +608,7 @@ theme_override_constants/margin_bottom = 3
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/ContextMenu/Vlist/PanelContainer/MarginContainer"]
 layout_mode = 2
-text = "Structure"
+text = "(S)tructure"
 fit_content = true
 autowrap_mode = 0
 
@@ -227,11 +630,33 @@ theme_override_constants/margin_bottom = 3
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/ContextMenu/Vlist/PanelContainer2/MarginContainer"]
 layout_mode = 2
-text = "Weapons"
+text = "(W)eapons"
 fit_content = true
 autowrap_mode = 0
 
 [node name="Button" type="Button" parent="UI/ContextMenu/Vlist/PanelContainer2"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="PanelContainer4" type="PanelContainer" parent="UI/ContextMenu/Vlist"]
+self_modulate = Color(0.74902, 0.913725, 0.945098, 1)
+layout_mode = 2
+script = ExtResource("5_5465x")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/ContextMenu/Vlist/PanelContainer4"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/ContextMenu/Vlist/PanelContainer4/MarginContainer"]
+layout_mode = 2
+text = "(A)rtifact"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Button" type="Button" parent="UI/ContextMenu/Vlist/PanelContainer4"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
@@ -249,7 +674,7 @@ theme_override_constants/margin_bottom = 3
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/ContextMenu/Vlist/PanelContainer3/MarginContainer"]
 layout_mode = 2
-text = "Destroy"
+text = "(D)estroy"
 fit_content = true
 autowrap_mode = 0
 
@@ -263,26 +688,44 @@ tile_set = SubResource("TileSet_n61r6")
 format = 2
 layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 7, 1, 0, 65541, 1, 0, 524288, 1, 0, 458752, 1, 0, 262144, 1, 0, 327680, 1, 0, 393216, 1, 0, 589824, 1, 0, 655360, 1, 0, 720896, 1, 0, 786432, 1, 0, 851968, 1, 0, 917504, 1, 0, 983040, 1, 0, 1048576, 1, 0, 15, 1, 0, 14, 1, 0, 13, 1, 0, 12, 1, 0, 11, 1, 0, 10, 1, 0, 9, 1, 0, 8, 1, 0, 6, 1, 0, 5, 1, 0, 1114112, 1, 0, 1179648, 1, 0, 1245184, 1, 0, 1245203, 1, 0, 1179667, 1, 0, 1114131, 1, 0, 1048595, 1, 0, 983059, 1, 0, 917523, 1, 0, 851987, 1, 0, 786451, 1, 0, 720915, 1, 0, 655379, 1, 0, 16, 1, 0, 17, 1, 0, 18, 1, 0, 19, 1, 0, 65555, 1, 0, 131091, 1, 0, 196627, 1, 0, 262163, 1, 0, 327699, 1, 0, 393235, 1, 0, 458771, 1, 0, 524307, 1, 0, 589843, 1, 0, 65554, 1, 0, 65553, 1, 0, 65552, 1, 0, 65551, 1, 0, 65550, 1, 0, 65549, 1, 0, 65548, 1, 0, 65547, 1, 0, 65546, 1, 0, 65545, 1, 0, 65544, 1, 0, 65543, 1, 0, 65542, 1, 0, 65540, 1, 0, 65539, 1, 0, 65538, 1, 0, 65537, 1, 0, 851974, 1, 0, 786438, 1, 0, 720902, 1, 0, 655366, 1, 0, 589830, 1, 0, 524294, 1, 0, 458758, 1, 0, 393222, 1, 0, 327686, 1, 0, 262150, 1, 0, 196614, 1, 0, 131078, 1, 0, 131077, 1, 0, 131076, 1, 0, 131075, 1, 0, 131074, 1, 0, 131073, 1, 0, 196609, 1, 0, 262145, 1, 0, 327681, 1, 0, 393217, 1, 0, 458753, 1, 0, 524289, 1, 0, 589825, 1, 0, 655361, 1, 0, 720897, 1, 0, 786433, 1, 0, 851969, 1, 0, 917505, 1, 0, 983041, 1, 0, 1048577, 1, 0, 1114113, 1, 0, 1179649, 1, 0, 1245185, 1, 0, 1245186, 1, 0, 1179650, 1, 0, 1114114, 1, 0, 1048578, 1, 0, 983042, 1, 0, 917506, 1, 0, 851970, 1, 0, 786434, 1, 0, 720898, 1, 0, 655362, 1, 0, 589826, 1, 0, 524290, 1, 0, 458754, 1, 0, 393218, 1, 0, 327682, 1, 0, 262146, 1, 0, 196610, 1, 0, 196611, 1, 0, 262147, 1, 0, 327683, 1, 0, 393219, 1, 0, 458755, 1, 0, 524291, 1, 0, 589827, 1, 0, 655363, 1, 0, 720899, 1, 0, 786435, 1, 0, 851971, 1, 0, 917507, 1, 0, 983043, 1, 0, 1048579, 1, 0, 1114115, 1, 0, 1179651, 1, 0, 1245187, 1, 0, 1245188, 1, 0, 1179652, 1, 0, 1114116, 1, 0, 1048580, 1, 0, 983044, 1, 0, 917508, 1, 0, 851972, 1, 0, 786436, 1, 0, 720900, 1, 0, 655364, 1, 0, 589828, 1, 0, 524292, 1, 0, 458756, 1, 0, 393220, 1, 0, 327684, 1, 0, 262148, 1, 0, 196612, 1, 0, 196613, 1, 0, 262149, 1, 0, 327685, 1, 0, 393221, 1, 0, 458757, 1, 0, 524293, 1, 0, 589829, 1, 0, 655365, 1, 0, 720901, 1, 0, 786437, 1, 0, 851973, 1, 0, 917509, 1, 0, 983045, 1, 0, 1048581, 1, 0, 1114117, 1, 0, 1179653, 1, 0, 1245189, 1, 0, 1245190, 1, 0, 1179654, 1, 0, 1114118, 1, 0, 1048582, 1, 0, 983046, 1, 0, 917510, 1, 0, 917511, 1, 0, 851975, 1, 0, 786439, 1, 0, 720903, 1, 0, 655367, 1, 0, 589831, 1, 0, 524295, 1, 0, 458759, 1, 0, 393223, 1, 0, 327687, 1, 0, 262151, 1, 0, 196615, 1, 0, 131079, 1, 0, 131080, 1, 0, 196616, 1, 0, 262152, 1, 0, 327688, 1, 0, 393224, 1, 0, 458760, 1, 0, 524296, 1, 0, 589832, 1, 0, 655368, 1, 0, 720904, 1, 0, 786440, 1, 0, 851976, 1, 0, 917512, 1, 0, 983048, 1, 0, 983047, 1, 0, 1048583, 1, 0, 1114119, 1, 0, 1179655, 1, 0, 1245191, 1, 0, 1245192, 1, 0, 1179656, 1, 0, 1114120, 1, 0, 1048584, 1, 0, 1048585, 1, 0, 983049, 1, 0, 917513, 1, 0, 851977, 1, 0, 786441, 1, 0, 720905, 1, 0, 655369, 1, 0, 589833, 1, 0, 524297, 1, 0, 458761, 1, 0, 393225, 1, 0, 327689, 1, 0, 262153, 1, 0, 196617, 1, 0, 131081, 1, 0, 131082, 1, 0, 196618, 1, 0, 262154, 1, 0, 327690, 1, 0, 393226, 1, 0, 458762, 1, 0, 524298, 1, 0, 589834, 1, 0, 655370, 1, 0, 720906, 1, 0, 786442, 1, 0, 851978, 1, 0, 917514, 1, 0, 983050, 1, 0, 1048586, 1, 0, 1114122, 1, 0, 1114121, 1, 0, 1179657, 1, 0, 1245193, 1, 0, 1245194, 1, 0, 1179658, 1, 0, 1179659, 1, 0, 1114123, 1, 0, 1048587, 1, 0, 983051, 1, 0, 917515, 1, 0, 851979, 1, 0, 786443, 1, 0, 720907, 1, 0, 655371, 1, 0, 589835, 1, 0, 524299, 1, 0, 458763, 1, 0, 393227, 1, 0, 327691, 1, 0, 262155, 1, 0, 196619, 1, 0, 131083, 1, 0, 131084, 1, 0, 196620, 1, 0, 262156, 1, 0, 327692, 1, 0, 393228, 1, 0, 458764, 1, 0, 524300, 1, 0, 589836, 1, 0, 655372, 1, 0, 720908, 1, 0, 786444, 1, 0, 851980, 1, 0, 917516, 1, 0, 983052, 1, 0, 1048588, 1, 0, 1114124, 1, 0, 1179660, 1, 0, 1245196, 1, 0, 1245195, 1, 0, 1245197, 1, 0, 1179661, 1, 0, 1114125, 1, 0, 1048589, 1, 0, 983053, 1, 0, 917517, 1, 0, 851981, 1, 0, 786445, 1, 0, 720909, 1, 0, 655373, 1, 0, 589837, 1, 0, 524301, 1, 0, 458765, 1, 0, 393229, 1, 0, 327693, 1, 0, 262157, 1, 0, 196621, 1, 0, 131085, 1, 0, 131086, 1, 0, 196622, 1, 0, 262158, 1, 0, 327694, 1, 0, 393230, 1, 0, 458766, 1, 0, 524302, 1, 0, 589838, 1, 0, 655374, 1, 0, 720910, 1, 0, 786446, 1, 0, 851982, 1, 0, 917518, 1, 0, 983054, 1, 0, 1048590, 1, 0, 1114126, 1, 0, 1179662, 1, 0, 1245198, 1, 0, 1245199, 1, 0, 1179663, 1, 0, 1114127, 1, 0, 1048591, 1, 0, 983055, 1, 0, 917519, 1, 0, 851983, 1, 0, 786447, 1, 0, 720911, 1, 0, 655375, 1, 0, 589839, 1, 0, 524303, 1, 0, 458767, 1, 0, 393231, 1, 0, 327695, 1, 0, 262159, 1, 0, 196623, 1, 0, 131087, 1, 0, 131088, 1, 0, 196624, 1, 0, 262160, 1, 0, 327696, 1, 0, 393232, 1, 0, 458768, 1, 0, 524304, 1, 0, 589840, 1, 0, 655376, 1, 0, 720912, 1, 0, 786448, 1, 0, 851984, 1, 0, 917520, 1, 0, 983056, 1, 0, 1048592, 1, 0, 1114128, 1, 0, 1179664, 1, 0, 1245200, 1, 0, 1245201, 1, 0, 1179665, 1, 0, 1114129, 1, 0, 1048593, 1, 0, 983057, 1, 0, 917521, 1, 0, 851985, 1, 0, 786449, 1, 0, 720913, 1, 0, 655377, 1, 0, 589841, 1, 0, 524305, 1, 0, 458769, 1, 0, 393233, 1, 0, 327697, 1, 0, 262161, 1, 0, 196625, 1, 0, 131089, 1, 0, 131090, 1, 0, 196626, 1, 0, 262162, 1, 0, 327698, 1, 0, 393234, 1, 0, 458770, 1, 0, 524306, 1, 0, 589842, 1, 0, 655378, 1, 0, 720914, 1, 0, 786450, 1, 0, 851986, 1, 0, 917522, 1, 0, 983058, 1, 0, 1048594, 1, 0, 1114130, 1, 0, 1179666, 1, 0, 1245202, 1, 0)
 
-[node name="Tiles" type="TileMap" parent="."]
+[node name="Tiles" type="TileMap" parent="." node_paths=PackedStringArray("playerCity", "enemyCity")]
 position = Vector2(32, 32)
 tile_set = SubResource("TileSet_n61r6")
 format = 2
-layer_0/tile_data = PackedInt32Array(196611, 262144, 0, 524304, 196608, 0, 458768, 65536, 0, 458767, 65536, 0, 524303, 65536, 0, 524302, 65536, 0, 524301, 65536, 0, 458765, 65536, 0, 458766, 65536, 0, 393232, 65536, 0, 393233, 65536, 0, 393231, 131072, 0, 458769, 65536, 0, 589841, 65536, 0, 589838, 65536, 0, 393229, 131072, 0, 327693, 131072, 0, 327694, 131072, 0, 327695, 131072, 0, 262159, 131072, 0, 262160, 131072, 0, 262161, 131072, 0, 327697, 131072, 0, 327696, 131072, 0, 393230, 131072, 0, 393221, 131072, 0, 196615, 131072, 0, 393217, 131072, 0, 262149, 65536, 0, 327683, 131072, 0, 262148, 65536, 0, 196612, 65536, 0, 327684, 65536, 0, 196613, 196608, 0, 196614, 65536, 0, 196610, 65536, 0, 327682, 65536, 0, 327681, 65536, 0, 393220, 65536, 0, 196609, 65536, 0, 131073, 131072, 0, 131077, 65536, 0, 131078, 65536, 0, 65542, 131072, 0, 393218, 0, 0, 393219, 0, 0, 458753, 0, 0, 393216, 0, 0, 327680, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 196608, 0, 0, 131072, 0, 0, 65537, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 65541, 0, 0, 6, 0, 0, 65543, 0, 0, 131079, 0, 0, 196616, 0, 0, 262151, 0, 0, 262150, 0, 0, 327685, 0, 0, 393222, 0, 0, 458757, 0, 0, 458756, 0, 0, 327692, 0, 0, 393228, 0, 0, 458764, 0, 0, 524300, 0, 0, 589837, 0, 0, 655374, 0, 0, 589839, 0, 0, 589840, 0, 0, 655377, 0, 0, 524305, 0, 0, 589842, 0, 0, 458770, 0, 0, 393234, 0, 0, 327698, 0, 0, 262162, 0, 0, 196625, 0, 0, 196624, 0, 0, 196623, 0, 0, 262158, 0, 0, 262157, 0, 0)
+layer_0/tile_data = PackedInt32Array(196611, 327680, 0, 524304, 262144, 0, 458768, 65536, 0, 458767, 65536, 0, 524303, 65536, 0, 524302, 65536, 0, 524301, 65536, 0, 458765, 65536, 0, 458766, 65536, 0, 393232, 65536, 0, 393233, 65536, 0, 393231, 131072, 0, 458769, 65536, 0, 589841, 65536, 0, 589838, 65536, 0, 393229, 131072, 0, 327693, 131072, 0, 327694, 131072, 0, 327695, 131072, 0, 262159, 131072, 0, 262160, 131072, 0, 262161, 131072, 0, 327697, 131072, 0, 327696, 131072, 0, 393230, 131072, 0, 393221, 131072, 0, 196615, 131072, 0, 393217, 131072, 0, 262149, 65536, 0, 327683, 131072, 0, 262148, 65536, 0, 196612, 65536, 0, 327684, 65536, 0, 196613, 262144, 0, 196614, 65536, 0, 196610, 65536, 0, 327682, 196608, 0, 327681, 65536, 0, 393220, 65536, 0, 196609, 65536, 0, 131073, 131072, 0, 131077, 65536, 0, 131078, 196608, 0, 65542, 131072, 0, 393218, 0, 0, 393219, 0, 0, 458753, 0, 0, 393216, 0, 0, 327680, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 196608, 0, 0, 131072, 0, 0, 65537, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 65541, 0, 0, 6, 0, 0, 65543, 0, 0, 131079, 0, 0, 196616, 0, 0, 262151, 0, 0, 262150, 0, 0, 327685, 0, 0, 393222, 0, 0, 458757, 0, 0, 458756, 0, 0, 327692, 0, 0, 393228, 0, 0, 458764, 0, 0, 524300, 0, 0, 589837, 0, 0, 655374, 0, 0, 589839, 0, 0, 589840, 0, 0, 655377, 0, 0, 524305, 0, 0, 589842, 0, 0, 458770, 0, 0, 393234, 0, 0, 327698, 0, 0, 262162, 0, 0, 196625, 0, 0, 196624, 0, 0, 196623, 0, 0, 262158, 0, 0, 262157, 0, 0)
+script = ExtResource("11_lb1lx")
+playerCity = NodePath("PlayerCity")
+enemyCity = NodePath("EnemyCity")
 
-[node name="PlayerCity" type="Node2D" parent="Tiles"]
+[node name="PlayerCity" type="Node2D" parent="Tiles" node_paths=PackedStringArray("effectsNode", "otherCity")]
 script = ExtResource("9_puunn")
 poofparticles = ExtResource("11_juohv")
-costs = Array[int]([0, 3, 5])
-build_times = Array[float]([0.0, 3.0, 5.0])
+buildtimer = ExtResource("15_3h3lg")
+costs = Array[float]([0.0, 1.4, 3.2, 1.0])
+build_times = Array[float]([0.0, 5.0, 12.0, 7.0])
+effectsNode = NodePath("../../effects")
+otherCity = NodePath("../EnemyCity")
 
-[node name="EnemyCity" type="Node2D" parent="Tiles"]
+[node name="EnemyCity" type="Node2D" parent="Tiles" node_paths=PackedStringArray("effectsNode", "otherCity")]
 script = ExtResource("9_puunn")
 poofparticles = ExtResource("11_juohv")
-costs = Array[int]([0, 3, 5])
-build_times = Array[float]([0.0, 3.0, 5.0])
+buildtimer = ExtResource("15_3h3lg")
+costs = Array[float]([0.0, 1.0, 2.0, 0.0])
+build_times = Array[float]([0.0, 4.0, 8.0, 0.0])
+effectsNode = NodePath("../../effects")
+otherCity = NodePath("../PlayerCity")
+
+[node name="EnemyAI" type="Node2D" parent="Tiles" node_paths=PackedStringArray("city")]
+script = ExtResource("14_uolep")
+city = NodePath("../EnemyCity")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Tiles"]
+libraries = {
+"": SubResource("AnimationLibrary_18cug")
+}
 
 [node name="MouseoverTile" type="TileMap" parent="."]
-modulate = Color(1, 1, 1, 0.36818)
+modulate = Color(1, 1, 1, 0.671057)
 position = Vector2(32, 32)
 tile_set = SubResource("TileSet_n61r6")
 format = 2
@@ -300,29 +743,41 @@ offset_right = 352.0
 offset_bottom = 352.0
 mouse_filter = 2
 
-[node name="RocketAttack" parent="effects" instance=ExtResource("13_56nfw")]
-self_modulate = Color(1, 1, 1, 1)
-position = Vector2(104, 104)
+[node name="Starsmask" type="Sprite2D" parent="effects"]
+position = Vector2(160, 63)
+scale = Vector2(2.39375, 2.39375)
+texture = ExtResource("17_1e58y")
 
-[node name="RocketLaunch" parent="effects" instance=ExtResource("14_gcoul")]
-position = Vector2(215, 87)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="effects/Starsmask"]
+libraries = {
+"": SubResource("AnimationLibrary_bhyon")
+}
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-offset_left = 80.0
-offset_top = 64.0
-offset_right = 96.0
-offset_bottom = 80.0
-max_value = 1.0
-step = 0.01
-value = 0.43
-fill_mode = 4
-nine_patch_stretch = true
-texture_under = ExtResource("15_p1ufq")
-texture_progress = ExtResource("16_wxnsn")
-script = ExtResource("17_efq3a")
+[node name="Spaceship" type="Sprite2D" parent="effects/Starsmask"]
+position = Vector2(-324, 0)
+texture = ExtResource("18_pfog8")
+hframes = 2
+script = ExtResource("19_2wvly")
+
+[node name="Lazer" type="Sprite2D" parent="effects/Starsmask"]
+visible = false
+position = Vector2(1, 1)
+texture = ExtResource("19_ou8ug")
+script = ExtResource("20_odq5i")
+
+[node name="CombatController" type="Node2D" parent="." node_paths=PackedStringArray("playerCity", "enemyCity", "effectsNode")]
+script = ExtResource("16_asr7m")
+playerCity = NodePath("../Tiles/PlayerCity")
+enemyCity = NodePath("../Tiles/EnemyCity")
+effectsNode = NodePath("../effects")
+missileLaunch = ExtResource("14_gcoul")
+missileAttack = ExtResource("13_56nfw")
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[connection signal="button_down" from="UI/ColorRect2/buttons/PanelContainer/Button" to="." method="_skip_tutorial"]
 [connection signal="button_down" from="UI/ContextMenu/Vlist/PanelContainer/Button" to="UI/ContextMenu" method="_on_button_button_down" binds= [0]]
 [connection signal="button_down" from="UI/ContextMenu/Vlist/PanelContainer2/Button" to="UI/ContextMenu" method="_on_button_button_down" binds= [1]]
+[connection signal="button_down" from="UI/ContextMenu/Vlist/PanelContainer4/Button" to="UI/ContextMenu" method="_on_button_button_down" binds= [3]]
+[connection signal="button_up" from="UI/ContextMenu/Vlist/PanelContainer4/Button" to="UI/ContextMenu" method="_on_button_button_down" binds= [3]]
 [connection signal="button_down" from="UI/ContextMenu/Vlist/PanelContainer3/Button" to="UI/ContextMenu" method="_on_button_button_down" binds= [2]]

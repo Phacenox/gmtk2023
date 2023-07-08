@@ -1,6 +1,7 @@
 extends PanelColor
 
 var where = Vector2.ZERO
+@export var playerCity: City
 
 func showMenu(destroy: bool):
 	visible = true
@@ -8,18 +9,25 @@ func showMenu(destroy: bool):
 		get_node("Vlist/PanelContainer").visible = false
 		get_node("Vlist/PanelContainer2").visible = false
 		get_node("Vlist/PanelContainer3").visible = true
+		get_node("Vlist/PanelContainer4").visible = false
 	else:
 		get_node("Vlist/PanelContainer").visible = true
 		get_node("Vlist/PanelContainer2").visible = true
 		get_node("Vlist/PanelContainer3").visible = false
+		get_node("Vlist/PanelContainer4").visible = true
 	size = Vector2.ZERO
 
 func _on_button_button_down(which: int):
 	match which:
 		0:
-			get_node("../../Tiles/PlayerCity").build(City.types.building, where)
+			if(playerCity.excess_energy() > playerCity.costs[1]):
+				playerCity.build(City.types.building, where)
 		1:
-			get_node("../../Tiles/PlayerCity").build(City.types.war, where)
+			if(playerCity.excess_energy() > playerCity.costs[2]):
+				playerCity.build(City.types.war, where)
 		2:
-			get_node("../../Tiles/PlayerCity").destroy(where, true)
+				playerCity.destroy(where, true)
+		3:
+			if(playerCity.excess_energy() > playerCity.costs[3]):
+				playerCity.build(City.types.comms, where)
 	visible = false

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://q45h4adbfcby" path="res://timer/timer_progress.png" id="2_qgkbv"]
 [ext_resource type="Script" path="res://Timer.gd" id="3_ef4xg"]
 
-[node name="BuildTimer" type="TextureProgressBar"]
+[node name="BuildTimer" type="TextureProgressBar" groups=["timers"]]
 offset_left = 80.0
 offset_top = 64.0
 offset_right = 96.0
