@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://c28oy6g5avwl4"]
+
+[ext_resource type="Texture2D" uid="uid://blvfh0wtvo2uf" path="res://smoke.png" id="1_sjq3b"]
+[ext_resource type="Script" path="res://DestroyParticles.gd" id="2_5546f"]
+
+[sub_resource type="Gradient" id="Gradient_rsa76"]
+offsets = PackedFloat32Array(0, 0.103704, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8mhjc"]
+gradient = SubResource("Gradient_rsa76")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ps3c4"]
+emission_shape = 3
+emission_box_extents = Vector3(6, 6, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 54.95
+gravity = Vector3(0, -5, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_min = 6.32
+radial_accel_max = 6.32
+damping_min = 8.43
+damping_max = 12.64
+color_ramp = SubResource("GradientTexture1D_8mhjc")
+
+[node name="DestroyParticles" type="GPUParticles2D"]
+position = Vector2(73, 69)
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_ps3c4")
+texture = ExtResource("1_sjq3b")
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.9
+visibility_rect = Rect2(-20, -20, 40, 40)
+draw_order = 0
+script = ExtResource("2_5546f")

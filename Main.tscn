@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bf86ovvfhhrqr"]
+[gd_scene load_steps=23 format=3 uid="uid://bf86ovvfhhrqr"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_ii6ds"]
 [ext_resource type="Texture2D" uid="uid://guo4wwpdbfy3" path="res://Sprite-0002.png" id="1_yxbbt"]
@@ -11,6 +11,12 @@
 [ext_resource type="Texture2D" uid="uid://dj4vol48bolxq" path="res://mo_tiles.png" id="8_uxsdh"]
 [ext_resource type="Script" path="res://alphasway.gd" id="9_21pt5"]
 [ext_resource type="Script" path="res://city.gd" id="9_puunn"]
+[ext_resource type="PackedScene" uid="uid://c28oy6g5avwl4" path="res://destroy_particles.tscn" id="11_juohv"]
+[ext_resource type="PackedScene" uid="uid://c67w86yaqtsjs" path="res://rocket_attack.tscn" id="13_56nfw"]
+[ext_resource type="PackedScene" uid="uid://c0ownkva3ryxq" path="res://rocket_launch.tscn" id="14_gcoul"]
+[ext_resource type="Texture2D" uid="uid://dsocrcv0oet7c" path="res://timer/timer_under.png" id="15_p1ufq"]
+[ext_resource type="Texture2D" uid="uid://q45h4adbfcby" path="res://timer/timer_progress.png" id="16_wxnsn"]
+[ext_resource type="Script" path="res://Timer.gd" id="17_efq3a"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l37bs"]
 texture = ExtResource("2_o0y6x")
@@ -24,10 +30,10 @@ axis_stretch_vertical = 1
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8iaam"]
 texture = ExtResource("1_yxbbt")
 0:0/0 = 0
+1:0/size_in_atlas = Vector2i(1, 2)
 1:0/0 = 0
-2:0/size_in_atlas = Vector2i(1, 2)
+1:0/0/texture_origin = Vector2i(0, 8)
 2:0/0 = 0
-2:0/0/texture_origin = Vector2i(0, 8)
 3:0/size_in_atlas = Vector2i(1, 2)
 3:0/0 = 0
 3:0/0/texture_origin = Vector2i(0, 8)
@@ -172,7 +178,7 @@ z_as_relative = false
 layout_mode = 0
 offset_left = 337.0
 offset_top = 62.0
-offset_right = 358.0
+offset_right = 430.0
 offset_bottom = 128.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -261,26 +267,59 @@ layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 0, 131072, 1, 0, 196608,
 position = Vector2(32, 32)
 tile_set = SubResource("TileSet_n61r6")
 format = 2
-layer_0/tile_data = PackedInt32Array(196611, 196608, 0, 524304, 131072, 0, 458768, 262144, 0, 458767, 262144, 0, 524303, 262144, 0, 524302, 262144, 0, 524301, 262144, 0, 458765, 262144, 0, 458766, 262144, 0, 393232, 262144, 0, 393233, 262144, 0, 393231, 65536, 0, 458769, 262144, 0, 589841, 262144, 0, 589838, 262144, 0, 393229, 65536, 0, 327693, 65536, 0, 327694, 65536, 0, 327695, 65536, 0, 262159, 65536, 0, 262160, 65536, 0, 262161, 65536, 0, 327697, 65536, 0, 327696, 65536, 0, 393230, 65536, 0, 393221, 65536, 0, 196615, 65536, 0, 393217, 65536, 0, 262149, 262144, 0, 327683, 65536, 0, 262148, 262144, 0, 196612, 262144, 0, 327684, 262144, 0, 196613, 131072, 0, 196614, 262144, 0, 196610, 262144, 0, 327682, 262144, 0, 327681, 262144, 0, 393220, 262144, 0, 196609, 262144, 0, 131073, 65536, 0, 131077, 262144, 0, 131078, 262144, 0, 65542, 65536, 0, 393218, 0, 0, 393219, 0, 0, 458753, 0, 0, 393216, 0, 0, 327680, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 196608, 0, 0, 131072, 0, 0, 65537, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 65541, 0, 0, 6, 0, 0, 65543, 0, 0, 131079, 0, 0, 196616, 0, 0, 262151, 0, 0, 262150, 0, 0, 327685, 0, 0, 393222, 0, 0, 458757, 0, 0, 458756, 0, 0, 327692, 0, 0, 393228, 0, 0, 458764, 0, 0, 524300, 0, 0, 589837, 0, 0, 655374, 0, 0, 589839, 0, 0, 589840, 0, 0, 655377, 0, 0, 524305, 0, 0, 589842, 0, 0, 458770, 0, 0, 393234, 0, 0, 327698, 0, 0, 262162, 0, 0, 196625, 0, 0, 196624, 0, 0, 196623, 0, 0, 262158, 0, 0, 262157, 0, 0)
+layer_0/tile_data = PackedInt32Array(196611, 262144, 0, 524304, 196608, 0, 458768, 65536, 0, 458767, 65536, 0, 524303, 65536, 0, 524302, 65536, 0, 524301, 65536, 0, 458765, 65536, 0, 458766, 65536, 0, 393232, 65536, 0, 393233, 65536, 0, 393231, 131072, 0, 458769, 65536, 0, 589841, 65536, 0, 589838, 65536, 0, 393229, 131072, 0, 327693, 131072, 0, 327694, 131072, 0, 327695, 131072, 0, 262159, 131072, 0, 262160, 131072, 0, 262161, 131072, 0, 327697, 131072, 0, 327696, 131072, 0, 393230, 131072, 0, 393221, 131072, 0, 196615, 131072, 0, 393217, 131072, 0, 262149, 65536, 0, 327683, 131072, 0, 262148, 65536, 0, 196612, 65536, 0, 327684, 65536, 0, 196613, 196608, 0, 196614, 65536, 0, 196610, 65536, 0, 327682, 65536, 0, 327681, 65536, 0, 393220, 65536, 0, 196609, 65536, 0, 131073, 131072, 0, 131077, 65536, 0, 131078, 65536, 0, 65542, 131072, 0, 393218, 0, 0, 393219, 0, 0, 458753, 0, 0, 393216, 0, 0, 327680, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 196608, 0, 0, 131072, 0, 0, 65537, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 65541, 0, 0, 6, 0, 0, 65543, 0, 0, 131079, 0, 0, 196616, 0, 0, 262151, 0, 0, 262150, 0, 0, 327685, 0, 0, 393222, 0, 0, 458757, 0, 0, 458756, 0, 0, 327692, 0, 0, 393228, 0, 0, 458764, 0, 0, 524300, 0, 0, 589837, 0, 0, 655374, 0, 0, 589839, 0, 0, 589840, 0, 0, 655377, 0, 0, 524305, 0, 0, 589842, 0, 0, 458770, 0, 0, 393234, 0, 0, 327698, 0, 0, 262162, 0, 0, 196625, 0, 0, 196624, 0, 0, 196623, 0, 0, 262158, 0, 0, 262157, 0, 0)
 
 [node name="PlayerCity" type="Node2D" parent="Tiles"]
 script = ExtResource("9_puunn")
+poofparticles = ExtResource("11_juohv")
 costs = Array[int]([0, 3, 5])
 build_times = Array[float]([0.0, 3.0, 5.0])
 
 [node name="EnemyCity" type="Node2D" parent="Tiles"]
 script = ExtResource("9_puunn")
+poofparticles = ExtResource("11_juohv")
 costs = Array[int]([0, 3, 5])
 build_times = Array[float]([0.0, 3.0, 5.0])
 
 [node name="MouseoverTile" type="TileMap" parent="."]
-modulate = Color(1, 1, 1, 0.375676)
+modulate = Color(1, 1, 1, 0.36818)
 position = Vector2(32, 32)
 tile_set = SubResource("TileSet_n61r6")
 format = 2
 layer_0/tile_data = PackedInt32Array(983047, 2, 0)
 script = ExtResource("9_21pt5")
 speed = 3.0
+
+[node name="effects" type="Control" parent="."]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 352.0
+offset_bottom = 352.0
+mouse_filter = 2
+
+[node name="RocketAttack" parent="effects" instance=ExtResource("13_56nfw")]
+self_modulate = Color(1, 1, 1, 1)
+position = Vector2(104, 104)
+
+[node name="RocketLaunch" parent="effects" instance=ExtResource("14_gcoul")]
+position = Vector2(215, 87)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = 80.0
+offset_top = 64.0
+offset_right = 96.0
+offset_bottom = 80.0
+max_value = 1.0
+step = 0.01
+value = 0.43
+fill_mode = 4
+nine_patch_stretch = true
+texture_under = ExtResource("15_p1ufq")
+texture_progress = ExtResource("16_wxnsn")
+script = ExtResource("17_efq3a")
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
