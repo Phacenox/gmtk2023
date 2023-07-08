@@ -19,5 +19,6 @@ axis_stretch_vertical = 1
 [resource]
 default_font = ExtResource("1_yje63")
 default_font_size = 16
-/colors/1 = Color(0.741176, 1, 1, 1)
+PanelContainer/colors/PanelColor = Color(0.74902, 0.913725, 0.945098, 1)
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_e80yf")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)

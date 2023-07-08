@@ -7,7 +7,9 @@ class_name City
 @export var build_times: Array[float]
 @export var capitol_sprite_id: Vector2i
 
-var tiles = [[]]
+@onready var tilemap: TileMap = get_parent()
+
+var tiles = []
 var resource
 
 enum types{
@@ -22,9 +24,9 @@ const capitol_id = 5
 
 func _init():
 	for i in 20:
-		tiles += []
+		tiles.append([])
 		for _j in 20:
-			tiles[i] += null
+			tiles[i].append(null)
 
 
 func has(pos: Vector2i) -> bool:
@@ -40,7 +42,12 @@ func absorb(other: City):
 				tiles[i][j] = other.tiles[i][j]
 
 func build(what: int, pos: Vector2i):
-	pass
+	tilemap.set_cell(0, pos, 0, Vector2(what,0))
+	tiles[pos.x][pos.y] = what
+
+func destroy(pos: Vector2i, was_voluntary: bool = false):
+	tiles[pos.x][pos.y] = null
+	tilemap.set_cell(0, pos, -1)
 
 func complete_all():
 	pass
