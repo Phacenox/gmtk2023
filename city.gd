@@ -2,6 +2,9 @@ extends Node2D
 
 class_name City
 
+@export var dialogText: RichTextLabel
+@export var popup: Control
+
 @export var poofparticles: PackedScene
 
 @export var buildtimer: PackedScene
@@ -16,8 +19,8 @@ class_name City
 var tiles = []
 var resource
 
-const building_energy_worth = 0.6
-var available_energy = 0.001
+var building_energy_worth = 0.6
+var available_energy = 0
 var consumption = 0
 
 enum types{
@@ -44,7 +47,9 @@ func has(pos: Vector2i) -> bool:
 	return tiles[pos.x][pos.y][0] >= 0
 
 func Get(pos: Vector2i):
-	return tiles[pos.x][pos.y]
+	if in_bounds(pos):
+		return tiles[pos.x][pos.y]
+	return [-1, false]
 
 func absorb(other: City):
 	for i in 20:
@@ -70,7 +75,8 @@ func build(what: int, pos: Vector2i, force = false):
 		if(what == types.building):
 			available_energy += building_energy_worth
 		if what > 0:
-			if what == types.comms:
+			if !force and what == types.comms:
+				dialogText.msg("Warning: constructing more artifacts increases the enemy's desire to attack.", 0)
 				get_parent().get_parent().reduce_timer(5)
 			consumption += costs[what] if what < 4 else 0.0
 			var v = buildtimer.instantiate()
@@ -93,14 +99,41 @@ func in_bounds(pos: Vector2i) -> bool:
 	return !(pos.x < 0 or pos.y < 0 or pos.x >= 20 or pos.y >= 20)
 
 func destroy(pos: Vector2i, voluntary: bool = false):
+	if !in_bounds(pos):
+		return
 	if(voluntary and Get(pos)[0] > 0):
+		if Get(pos)[0] == types.ai:
+			dialogText.msg("Self destruct sequence initiated . . .", 0, 5)
+			var v = buildtimer.instantiate()
+			v.length = 10
+			effectsNode.add_child(v)
+			v.global_position = pos * 16 + Vector2i(32, 32)
+			await get_tree().create_timer(5).timeout
+			dialogText.msg("5 . . .", 0, 1)
+			await get_tree().create_timer(1).timeout
+			dialogText.msg("4 . . .", 0, 1)
+			await get_tree().create_timer(1).timeout
+			dialogText.msg("3 . . .", 0, 1)
+			await get_tree().create_timer(1).timeout
+			dialogText.msg("2 . . .", 0, 1)
+			await get_tree().create_timer(1).timeout
+			dialogText.msg("1 . . .", 0, 1)
+			await get_tree().create_timer(1).timeout
+			popup.do_game_over("You elected to ignore the third rule of robotics.")
+			get_parent().get_parent().turntimer = 0
+		elif Get(pos)[0] == types.capitol:
+			dialogText.msg("Error: cannot be directly responsible for death of ally.", 0)
+			return
 		build(0, pos, true)
 	else:
-		if(tiles[pos.x][pos.y][0] == types.building):
+		if(Get(pos)[0] == types.building):
 			available_energy -= building_energy_worth
-		tiles[pos.x][pos.y] = [-1, false]
-		tilemap.set_cell(0, pos, -1)
-		doparticles(pos)
+		if Get(pos + Vector2i.LEFT)[0] > 0 or Get(pos + Vector2i.RIGHT)[0] > 0 or Get(pos + Vector2i.UP)[0] > 0 or Get(pos + Vector2i.DOWN)[0] > 0:
+			build(0, pos, true)
+		else:
+			tiles[pos.x][pos.y] = [-1, false]
+			tilemap.set_cell(0, pos, -1)
+			doparticles(pos)
 
 func doparticles(pos):
 	var v = poofparticles.instantiate()
@@ -153,6 +186,14 @@ func GetAI():
 			if(tiles[i][j][0] == types.ai):
 				return [Vector2i(i,j)]
 	return []
+
+func GetComms():
+	var r = []
+	for i in 20:
+		for j in 20:
+			if(tiles[i][j][0] == types.comms):
+				r.append(Vector2i(i,j))
+	return r
 
 
 func GetBuildSpots():

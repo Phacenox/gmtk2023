@@ -73,7 +73,7 @@ offset_bottom = 4.0
 mouse_filter = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Control"]
-position = Vector2(5, -33)
+position = Vector2(5, 233)
 texture = ExtResource("1_neamp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Sprite2D"]

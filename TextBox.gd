@@ -18,7 +18,16 @@ func _process(delta):
 		visible_characters += 1
 		t += 0.03
 
+@export var fonts: Array[Font]
+
 func msg(m, who: int, ttime = 5):
+	get_node("../../../../Audio").play(0)
+	sprite.visible = true
+	get_parent().get_parent().depth = -0.2
+	get_parent().get_parent()._draw()
+	visible = true
+
+	add_theme_font_override("normal_font", fonts[who])
 	text = m
 	visible_characters = 0
 	sprite.frame = who
@@ -28,3 +37,14 @@ func msg(m, who: int, ttime = 5):
 	effectsNode.add_child(v)
 	v.global_position = global_position - Vector2(86, 22)
 	await v.finished
+	if text == m:
+		slow_hide()
+
+func slow_hide():
+	var cachetext = text
+	await get_tree().create_timer(2).timeout
+	if cachetext == text:
+		sprite.visible = false
+		get_parent().get_parent().depth = 0.4
+		get_parent().get_parent()._draw()
+		visible = false

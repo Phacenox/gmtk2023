@@ -1,0 +1,48 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://uov5gj5rwu3h"]
+
+[ext_resource type="Texture2D" uid="uid://3h2hdariw0pv" path="res://themestuff/emblem1.png" id="1_mqc2l"]
+[ext_resource type="Texture2D" uid="uid://jjc3vbv63h05" path="res://themestuff/tex1.png" id="2_tktij"]
+[ext_resource type="Texture2D" uid="uid://cru2o06pxnq1o" path="res://themestuff/tex1_iv.png" id="3_efx3b"]
+[ext_resource type="FontFile" uid="uid://jt4yb05mwb5v" path="res://fonts/alagard.ttf" id="4_4wxhj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e80yf"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("2_tktij")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lt2y4"]
+texture = ExtResource("3_efx3b")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3imnb"]
+
+[resource]
+default_font = ExtResource("4_4wxhj")
+default_font_size = 16
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0.482353, 0.482353, 0.482353, 0.529412)
+PanelContainer/colors/PanelColor = Color(0.992157, 0.905882, 0.937255, 1)
+PanelContainer/icons/emblem = ExtResource("1_mqc2l")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_e80yf")
+ProgressBar/colors/font_color = Color(0, 0, 0, 1)
+ProgressBar/styles/background = SubResource("StyleBoxTexture_lt2y4")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_3imnb")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/font_shadow_color = Color(0.482353, 0.482353, 0.482353, 0.529412)

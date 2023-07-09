@@ -79,7 +79,6 @@ mouse_filter = 2
 position = Vector2(17, 17)
 rotation = -0.47896
 texture = ExtResource("1_7gfja")
-offset = Vector2(0, 367)
 
 [node name="DestroyParticles" parent="Control" instance=ExtResource("2_66h72")]
 position = Vector2(188, 343)

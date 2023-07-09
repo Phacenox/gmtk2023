@@ -11,7 +11,6 @@ func ZoomOut():
 
 	var copy = duplicate()
 	add_sibling(copy)
-	get_parent().move_child(copy, 3)
 	
 	copy.set_script("")
 	for i in copy.get_children():
@@ -38,6 +37,10 @@ func ZoomOut():
 				best_tile = playerCity.types.capitol
 			if tiles.has(playerCity.types.ai):
 				best_tile = playerCity.types.ai
+				best_tiles[Vector2i(i+1, j)] = playerCity.types.comms
+				best_tiles[Vector2i(i-1, j)] = playerCity.types.comms
+				best_tiles[Vector2i(i, j+1)] = playerCity.types.comms
+				best_tiles[Vector2i(i, j-1)] = playerCity.types.comms
 			#build it
 			if best_tile > 0:
 				best_tiles[Vector2i(i, j)] = best_tile
