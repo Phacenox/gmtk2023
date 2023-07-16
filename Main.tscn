@@ -1,57 +1,57 @@
 [gd_scene load_steps=64 format=3 uid="uid://bf86ovvfhhrqr"]
 
-[ext_resource type="Script" path="res://Main.gd" id="1_ii6ds"]
-[ext_resource type="Texture2D" uid="uid://guo4wwpdbfy3" path="res://Sprite-0002.png" id="1_yxbbt"]
+[ext_resource type="Script" path="res://Code/Main.gd" id="1_jdfcs"]
+[ext_resource type="PackedScene" uid="uid://rgbllsxm4aic" path="res://components/landing_zone.tscn" id="2_4h1ad"]
 [ext_resource type="Texture2D" uid="uid://vp3iknwp8k7b" path="res://bgtile.png" id="2_goktk"]
-[ext_resource type="Theme" uid="uid://c4p22btxm6nne" path="res://fonts/theme3.tres" id="3_2fkq1"]
-[ext_resource type="Theme" uid="uid://dxoyldof3lusy" path="res://fonts/theme4.tres" id="3_60nns"]
-[ext_resource type="Theme" uid="uid://cddhr44o74cwy" path="res://fonts/theme2.tres" id="3_86nw5"]
-[ext_resource type="Script" path="res://Audio.gd" id="3_lfbty"]
-[ext_resource type="Theme" uid="uid://cu14boby0ryr8" path="res://fonts/theme0.tres" id="3_q5n7j"]
-[ext_resource type="Theme" uid="uid://uov5gj5rwu3h" path="res://fonts/theme1.tres" id="3_u1v40"]
-[ext_resource type="Texture2D" uid="uid://c5fu8sqaj0aqh" path="res://Sprite-0001-export.png" id="4_4t3r2"]
+[ext_resource type="Script" path="res://Code/Audio.gd" id="3_egoaf"]
 [ext_resource type="AudioStream" uid="uid://euc7twwfnjj" path="res://audio/codec.wav" id="4_as1ig"]
 [ext_resource type="AudioStream" uid="uid://bjg2desb5hln7" path="res://audio/selecet.wav" id="5_80eqr"]
-[ext_resource type="Script" path="res://PanelColor.gd" id="5_5465x"]
-[ext_resource type="Texture2D" uid="uid://dwqx4kmripne6" path="res://themestuff/tex_iv.png" id="5_bhcxq"]
 [ext_resource type="AudioStream" uid="uid://cekx37wahi7ve" path="res://audio/hit.wav" id="6_6qj6r"]
-[ext_resource type="Script" path="res://ContextMenu.gd" id="6_j6dvm"]
-[ext_resource type="Script" path="res://TextBox.gd" id="7_gdme4"]
 [ext_resource type="AudioStream" uid="uid://clkiqyhftr4pt" path="res://audio/hit2.wav" id="7_r4de4"]
-[ext_resource type="Script" path="res://Emblem.gd" id="7_sif4c"]
 [ext_resource type="AudioStream" uid="uid://b17uku0v6q5w7" path="res://audio/danger.wav" id="8_2xl8x"]
 [ext_resource type="Texture2D" uid="uid://dj4vol48bolxq" path="res://mo_tiles.png" id="8_uxsdh"]
-[ext_resource type="Script" path="res://alphasway.gd" id="9_21pt5"]
 [ext_resource type="AudioStream" uid="uid://c6ngxra4fqro6" path="res://audio/alien.wav" id="9_gkhon"]
-[ext_resource type="Script" path="res://city.gd" id="9_puunn"]
-[ext_resource type="FontFile" uid="uid://car2gpxdq1gid" path="res://fonts/Perfect DOS VGA 437 Win.ttf" id="10_6lent"]
 [ext_resource type="AudioStream" uid="uid://btk5hpo3prrs3" path="res://audio/update.wav" id="10_iho0u"]
-[ext_resource type="FontFile" uid="uid://jt4yb05mwb5v" path="res://fonts/alagard.ttf" id="11_1iope"]
 [ext_resource type="AudioStream" uid="uid://csritt1qr4vng" path="res://audio/failure.wav" id="11_1j1yl"]
-[ext_resource type="PackedScene" uid="uid://c28oy6g5avwl4" path="res://destroy_particles.tscn" id="11_juohv"]
-[ext_resource type="Script" path="res://Zoom.gd" id="11_lb1lx"]
-[ext_resource type="Script" path="res://Popup.gd" id="12_4hyn3"]
-[ext_resource type="FontFile" uid="uid://doquktjpg5ujm" path="res://fonts/GhastlyPixe.ttf" id="12_4iq4h"]
 [ext_resource type="AudioStream" uid="uid://d28e8m6kmipt0" path="res://audio/explode.wav" id="12_ll2o1"]
-[ext_resource type="PackedScene" uid="uid://c67w86yaqtsjs" path="res://rocket_attack.tscn" id="13_56nfw"]
-[ext_resource type="FontFile" uid="uid://0c6hsxjgpt2a" path="res://fonts/superstar_memesbruh03.ttf" id="13_eoecu"]
-[ext_resource type="PackedScene" uid="uid://c0ownkva3ryxq" path="res://rocket_launch.tscn" id="14_gcoul"]
-[ext_resource type="Script" path="res://EnemyAI.gd" id="14_uolep"]
-[ext_resource type="FontFile" uid="uid://ckg5gefvjli1d" path="res://fonts/I-pixel-u.ttf" id="14_vvlxg"]
-[ext_resource type="Texture2D" uid="uid://cd1v8bnwsgk26" path="res://themestuff/emblem4.png" id="15_0nwxj"]
-[ext_resource type="PackedScene" uid="uid://bw7m5gn07e0kq" path="res://timer/build_timer.tscn" id="15_3h3lg"]
-[ext_resource type="FontFile" uid="uid://cej6xsp6sv4kw" path="res://fonts/Gamer.ttf" id="15_5ikiw"]
-[ext_resource type="Script" path="res://CombatController.gd" id="16_asr7m"]
-[ext_resource type="PackedScene" uid="uid://rgbllsxm4aic" path="res://landing_zone.tscn" id="16_yexo8"]
-[ext_resource type="Texture2D" uid="uid://cbs5crwres1hi" path="res://starsmask.png" id="17_1e58y"]
-[ext_resource type="Texture2D" uid="uid://bbpy8hwds5gf4" path="res://spaceship.png" id="18_pfog8"]
-[ext_resource type="Script" path="res://Spaceship.gd" id="19_2wvly"]
-[ext_resource type="Texture2D" uid="uid://dst7j7u20calq" path="res://lazer.png" id="19_ou8ug"]
-[ext_resource type="Script" path="res://Lazer.gd" id="20_odq5i"]
-[ext_resource type="Theme" uid="uid://dmtisd308ytwy" path="res://fonts/theme5.tres" id="23_xkapn"]
+[ext_resource type="Theme" uid="uid://dxoyldof3lusy" path="res://theme/theme4.tres" id="13_mypfd"]
+[ext_resource type="Script" path="res://Code/PanelColor.gd" id="14_hcrrf"]
+[ext_resource type="Texture2D" uid="uid://dwqx4kmripne6" path="res://theme/themeassets/tex_iv.png" id="15_krvgt"]
+[ext_resource type="Texture2D" uid="uid://cd1v8bnwsgk26" path="res://theme/themeassets/emblem4.png" id="16_877m5"]
+[ext_resource type="Script" path="res://Code/Emblem.gd" id="17_56dbw"]
+[ext_resource type="Script" path="res://Code/TextBox.gd" id="18_n3xyi"]
+[ext_resource type="PackedScene" uid="uid://bw7m5gn07e0kq" path="res://components/timer/build_timer.tscn" id="19_g13o5"]
+[ext_resource type="FontFile" uid="uid://car2gpxdq1gid" path="res://theme/themeassets/Perfect DOS VGA 437 Win.ttf" id="20_7uis3"]
+[ext_resource type="FontFile" uid="uid://jt4yb05mwb5v" path="res://theme/themeassets/alagard.ttf" id="21_m4b5x"]
+[ext_resource type="FontFile" uid="uid://doquktjpg5ujm" path="res://theme/themeassets/GhastlyPixe.ttf" id="22_ybq1b"]
+[ext_resource type="FontFile" uid="uid://0c6hsxjgpt2a" path="res://theme/themeassets/superstar_memesbruh03.ttf" id="23_8e3ol"]
+[ext_resource type="FontFile" uid="uid://ckg5gefvjli1d" path="res://theme/themeassets/I-pixel-u.ttf" id="24_dvxgn"]
+[ext_resource type="FontFile" uid="uid://cej6xsp6sv4kw" path="res://theme/themeassets/Gamer.ttf" id="25_1nvw3"]
+[ext_resource type="Texture2D" uid="uid://c5fu8sqaj0aqh" path="res://portraits.png" id="26_3gqlp"]
+[ext_resource type="Script" path="res://Code/ContextMenu.gd" id="27_fq6kv"]
+[ext_resource type="Script" path="res://Code/Popup.gd" id="28_xfwq1"]
+[ext_resource type="Theme" uid="uid://cu14boby0ryr8" path="res://theme/theme0.tres" id="29_c6bsb"]
+[ext_resource type="Theme" uid="uid://uov5gj5rwu3h" path="res://theme/theme1.tres" id="30_b7slc"]
+[ext_resource type="Theme" uid="uid://cddhr44o74cwy" path="res://theme/theme2.tres" id="31_xkfm1"]
+[ext_resource type="Theme" uid="uid://c4p22btxm6nne" path="res://theme/theme3.tres" id="32_x6p6l"]
+[ext_resource type="Theme" uid="uid://dmtisd308ytwy" path="res://theme/theme5.tres" id="33_5ywhg"]
+[ext_resource type="Texture2D" uid="uid://guo4wwpdbfy3" path="res://buildings.png" id="34_ji7ho"]
+[ext_resource type="Script" path="res://Code/Zoom.gd" id="37_ag7s5"]
+[ext_resource type="Script" path="res://Code/City.gd" id="38_fo4g3"]
+[ext_resource type="PackedScene" uid="uid://c28oy6g5avwl4" path="res://components/destroy_particles.tscn" id="39_nfaje"]
+[ext_resource type="Script" path="res://Code/EnemyAI.gd" id="40_sbaqu"]
+[ext_resource type="Script" path="res://Code/AlphaSway.gd" id="41_7d2v2"]
+[ext_resource type="Texture2D" uid="uid://cbs5crwres1hi" path="res://components/starsmask.png" id="42_d3aa4"]
+[ext_resource type="Texture2D" uid="uid://bbpy8hwds5gf4" path="res://components/spaceship.png" id="43_lsd5g"]
+[ext_resource type="Script" path="res://Code/Spaceship.gd" id="44_cun4w"]
+[ext_resource type="Texture2D" uid="uid://dst7j7u20calq" path="res://components/lazer.png" id="45_xyita"]
+[ext_resource type="Script" path="res://Code/Lazer.gd" id="46_6upsy"]
+[ext_resource type="Script" path="res://Code/CombatController.gd" id="47_drxmo"]
+[ext_resource type="PackedScene" uid="uid://c0ownkva3ryxq" path="res://components/rocket_launch.tscn" id="48_wexje"]
+[ext_resource type="PackedScene" uid="uid://c67w86yaqtsjs" path="res://components/rocket_attack.tscn" id="49_i0naq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l37bs"]
-texture = ExtResource("5_bhcxq")
+texture = ExtResource("15_krvgt")
 texture_margin_left = 3.0
 texture_margin_top = 3.0
 texture_margin_right = 3.0
@@ -69,7 +69,7 @@ bg_color = Color(1, 1, 0.32549, 1)
 bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8iaam"]
-texture = ExtResource("1_yxbbt")
+texture = ExtResource("34_ji7ho")
 0:0/0 = 0
 1:0/size_in_atlas = Vector2i(1, 2)
 1:0/0 = 0
@@ -310,7 +310,7 @@ _data = {
 }
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("tiles", "mouseoverTile", "portraitSprite", "dialogText", "finalTimerText", "fstTimerText", "finalTimer", "fstTimer", "UIBase", "contextMenu", "effectsNode", "enemyAI", "combatController", "playerCity", "enemyCity", "skiptutorialbutton", "popup")]
-script = ExtResource("1_ii6ds")
+script = ExtResource("1_jdfcs")
 tiles = NodePath("Tiles")
 mouseoverTile = NodePath("MouseoverTile")
 portraitSprite = NodePath("UI/ColorRect2/Sprite-0001")
@@ -321,7 +321,7 @@ finalTimer = NodePath("UI/ColorRect/Control/ColorRect")
 fstTimer = NodePath("UI/ColorRect/Control/ColorRect3")
 UIBase = NodePath("UI")
 contextMenu = NodePath("UI/ContextMenu")
-dropAnimation = ExtResource("16_yexo8")
+dropAnimation = ExtResource("2_4h1ad")
 effectsNode = NodePath("effects")
 enemyAI = NodePath("Tiles/EnemyAI")
 combatController = NodePath("CombatController")
@@ -331,7 +331,7 @@ skiptutorialbutton = NodePath("UI/ColorRect2/buttons/PanelContainer")
 popup = NodePath("UI/Popup")
 
 [node name="Audio" type="Node2D" parent="."]
-script = ExtResource("3_lfbty")
+script = ExtResource("3_egoaf")
 sounds = Array[AudioStream]([ExtResource("4_as1ig"), ExtResource("5_80eqr"), ExtResource("6_6qj6r"), ExtResource("7_r4de4"), ExtResource("8_2xl8x"), ExtResource("9_gkhon"), ExtResource("10_iho0u"), ExtResource("11_1j1yl"), ExtResource("12_ll2o1")])
 
 [node name="Button" type="Button" parent="."]
@@ -346,7 +346,7 @@ anchors_preset = 0
 offset_right = 640.0
 offset_bottom = 480.0
 mouse_filter = 2
-theme = ExtResource("3_60nns")
+theme = ExtResource("13_mypfd")
 
 [node name="BG" type="PanelContainer" parent="UI"]
 self_modulate = Color(0.32549, 0.4, 0.309804, 1)
@@ -354,7 +354,7 @@ layout_mode = 0
 offset_right = 640.0
 offset_bottom = 480.0
 mouse_filter = 2
-script = ExtResource("5_5465x")
+script = ExtResource("14_hcrrf")
 depth = 0.6
 
 [node name="PlayfieldOutline" type="PanelContainer" parent="UI"]
@@ -366,7 +366,7 @@ offset_right = 355.0
 offset_bottom = 355.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_l37bs")
-script = ExtResource("5_5465x")
+script = ExtResource("14_hcrrf")
 depth = 0.6
 
 [node name="ColorRect" type="PanelContainer" parent="UI"]
@@ -377,7 +377,7 @@ offset_top = 32.0
 offset_right = 608.0
 offset_bottom = 352.0
 mouse_filter = 2
-script = ExtResource("5_5465x")
+script = ExtResource("14_hcrrf")
 
 [node name="Control" type="Control" parent="UI/ColorRect"]
 clip_contents = true
@@ -392,7 +392,7 @@ offset_left = 120.0
 offset_right = 240.0
 offset_bottom = 320.0
 mouse_filter = 2
-script = ExtResource("5_5465x")
+script = ExtResource("14_hcrrf")
 
 [node name="Control" type="Control" parent="UI/ColorRect/Control/ColorRect4"]
 layout_mode = 2
@@ -411,8 +411,8 @@ offset_right = -1.0
 offset_bottom = 120.0
 grow_horizontal = 0
 grow_vertical = 2
-texture = ExtResource("15_0nwxj")
-script = ExtResource("7_sif4c")
+texture = ExtResource("16_877m5")
+script = ExtResource("17_56dbw")
 
 [node name="ColorRect5" type="PanelContainer" parent="UI/ColorRect/Control"]
 self_modulate = Color(0.92549, 1, 0.909804, 1)
@@ -421,7 +421,7 @@ layout_mode = 2
 offset_right = 120.0
 offset_bottom = 320.0
 mouse_filter = 2
-script = ExtResource("5_5465x")
+script = ExtResource("14_hcrrf")
 
 [node name="Control" type="Control" parent="UI/ColorRect/Control/ColorRect5"]
 layout_mode = 2
@@ -440,8 +440,8 @@ offset_right = -1.0
 offset_bottom = 120.0
 grow_horizontal = 0
 grow_vertical = 2
-texture = ExtResource("15_0nwxj")
-script = ExtResource("7_sif4c")
+texture = ExtResource("16_877m5")
+script = ExtResource("17_56dbw")
 
 [node name="RichTextLabel" type="Label" parent="UI/ColorRect/Control"]
 layout_mode = 1
@@ -474,7 +474,7 @@ step = 0.001
 value = 0.81
 fill_mode = 2
 show_percentage = false
-script = ExtResource("5_5465x")
+script = ExtResource("14_hcrrf")
 depth = 0.1
 
 [node name="RichTextLabel2" type="Label" parent="UI/ColorRect/Control"]
@@ -503,7 +503,7 @@ max_value = 1.0
 step = 0.001
 value = 0.4
 fill_mode = 3
-script = ExtResource("5_5465x")
+script = ExtResource("14_hcrrf")
 depth = 0.1
 
 [node name="ColorRect2" type="PanelContainer" parent="UI"]
@@ -514,7 +514,7 @@ offset_top = 368.0
 offset_right = 608.0
 offset_bottom = 448.0
 mouse_filter = 2
-script = ExtResource("5_5465x")
+script = ExtResource("14_hcrrf")
 depth = 0.4
 
 [node name="Control" type="Control" parent="UI/ColorRect2"]
@@ -536,8 +536,8 @@ offset_right = 120.0
 offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("15_0nwxj")
-script = ExtResource("7_sif4c")
+texture = ExtResource("16_877m5")
+script = ExtResource("17_56dbw")
 
 [node name="PlayfieldOutline2" type="PanelContainer" parent="UI/ColorRect2/Control"]
 self_modulate = Color(0.82549, 0.9, 0.809804, 1)
@@ -548,7 +548,7 @@ offset_right = 67.0
 offset_bottom = 67.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_l37bs")
-script = ExtResource("5_5465x")
+script = ExtResource("14_hcrrf")
 depth = 0.1
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="UI/ColorRect2/Control" node_paths=PackedStringArray("effectsNode", "sprite")]
@@ -559,16 +559,16 @@ offset_right = 559.0
 offset_bottom = 64.0
 mouse_filter = 2
 scroll_active = false
-script = ExtResource("7_gdme4")
-timer = ExtResource("15_3h3lg")
+script = ExtResource("18_n3xyi")
+timer = ExtResource("19_g13o5")
 effectsNode = NodePath("../../..")
 sprite = NodePath("../../Sprite-0001")
-fonts = Array[Font]([ExtResource("10_6lent"), ExtResource("11_1iope"), ExtResource("12_4iq4h"), ExtResource("13_eoecu"), ExtResource("14_vvlxg"), ExtResource("15_5ikiw")])
+fonts = Array[Font]([ExtResource("20_7uis3"), ExtResource("21_m4b5x"), ExtResource("22_ybq1b"), ExtResource("23_8e3ol"), ExtResource("24_dvxgn"), ExtResource("25_1nvw3")])
 
 [node name="Sprite-0001" type="Sprite2D" parent="UI/ColorRect2"]
 visible = false
 position = Vector2(40, 40)
-texture = ExtResource("4_4t3r2")
+texture = ExtResource("26_3gqlp")
 hframes = 9
 
 [node name="buttons" type="Control" parent="UI/ColorRect2"]
@@ -581,7 +581,7 @@ offset_left = 483.0
 offset_top = 62.0
 offset_right = 585.0
 offset_bottom = 84.0
-script = ExtResource("5_5465x")
+script = ExtResource("14_hcrrf")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/ColorRect2/buttons/PanelContainer"]
 layout_mode = 2
@@ -612,7 +612,7 @@ offset_right = 383.0
 offset_bottom = 280.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-script = ExtResource("6_j6dvm")
+script = ExtResource("27_fq6kv")
 playerCity = NodePath("../../Tiles/PlayerCity")
 depth = 0.6
 
@@ -625,7 +625,7 @@ theme_override_constants/separation = 0
 [node name="PanelContainer" type="PanelContainer" parent="UI/ContextMenu/Vlist"]
 self_modulate = Color(0.92549, 1, 0.909804, 1)
 layout_mode = 2
-script = ExtResource("5_5465x")
+script = ExtResource("14_hcrrf")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/ContextMenu/Vlist/PanelContainer"]
 layout_mode = 2
@@ -648,7 +648,7 @@ layout_mode = 2
 [node name="PanelContainer2" type="PanelContainer" parent="UI/ContextMenu/Vlist"]
 self_modulate = Color(0.92549, 1, 0.909804, 1)
 layout_mode = 2
-script = ExtResource("5_5465x")
+script = ExtResource("14_hcrrf")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/ContextMenu/Vlist/PanelContainer2"]
 layout_mode = 2
@@ -671,7 +671,7 @@ layout_mode = 2
 [node name="PanelContainer4" type="PanelContainer" parent="UI/ContextMenu/Vlist"]
 self_modulate = Color(0.92549, 1, 0.909804, 1)
 layout_mode = 2
-script = ExtResource("5_5465x")
+script = ExtResource("14_hcrrf")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/ContextMenu/Vlist/PanelContainer4"]
 layout_mode = 2
@@ -694,7 +694,7 @@ layout_mode = 2
 [node name="PanelContainer3" type="PanelContainer" parent="UI/ContextMenu/Vlist"]
 self_modulate = Color(0.92549, 1, 0.909804, 1)
 layout_mode = 2
-script = ExtResource("5_5465x")
+script = ExtResource("14_hcrrf")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/ContextMenu/Vlist/PanelContainer3"]
 layout_mode = 2
@@ -725,12 +725,12 @@ offset_right = 458.0
 offset_bottom = 279.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-script = ExtResource("12_4hyn3")
+script = ExtResource("28_xfwq1")
 uibase = NodePath("..")
 label1 = NodePath("../ColorRect/Control/RichTextLabel")
 label2 = NodePath("../ColorRect/Control/RichTextLabel2")
 label3 = NodePath("Control/RichTextLabel")
-themes = Array[Theme]([ExtResource("3_q5n7j"), ExtResource("3_u1v40"), ExtResource("3_86nw5"), ExtResource("3_2fkq1"), ExtResource("3_60nns"), ExtResource("23_xkapn")])
+themes = Array[Theme]([ExtResource("29_c6bsb"), ExtResource("30_b7slc"), ExtResource("31_xkfm1"), ExtResource("32_x6p6l"), ExtResource("13_mypfd"), ExtResource("33_5ywhg")])
 
 [node name="Control" type="Control" parent="UI/Popup"]
 layout_mode = 2
@@ -742,7 +742,7 @@ offset_left = 3.0
 offset_top = 3.0
 offset_right = 288.0
 offset_bottom = 95.0
-script = ExtResource("5_5465x")
+script = ExtResource("14_hcrrf")
 
 [node name="RichTextLabel" type="Label" parent="UI/Popup/Control"]
 layout_mode = 2
@@ -778,7 +778,7 @@ max_value = 1.0
 step = 0.001
 value = 0.81
 show_percentage = false
-script = ExtResource("5_5465x")
+script = ExtResource("14_hcrrf")
 depth = 0.1
 
 [node name="MouseStopper" type="Control" parent="UI/Popup/Control"]
@@ -806,7 +806,7 @@ offset_left = 225.0
 offset_top = 79.0
 offset_right = 327.0
 offset_bottom = 105.0
-script = ExtResource("5_5465x")
+script = ExtResource("14_hcrrf")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/Popup/Control/button"]
 layout_mode = 2
@@ -836,34 +836,34 @@ position = Vector2(32, 32)
 tile_set = SubResource("TileSet_n61r6")
 format = 2
 layer_0/tile_data = PackedInt32Array(196611, 327680, 0, 524304, 262144, 0, 458768, 65536, 0, 458767, 65536, 0, 524303, 65536, 0, 524302, 65536, 0, 524301, 65536, 0, 458765, 65536, 0, 458766, 65536, 0, 393232, 65536, 0, 393233, 65536, 0, 393231, 131072, 0, 458769, 65536, 0, 589841, 65536, 0, 589838, 65536, 0, 393229, 131072, 0, 327693, 131072, 0, 327694, 131072, 0, 327695, 131072, 0, 262159, 131072, 0, 262160, 131072, 0, 262161, 131072, 0, 327697, 131072, 0, 327696, 131072, 0, 393230, 131072, 0, 393221, 131072, 0, 196615, 131072, 0, 393217, 131072, 0, 262149, 65536, 0, 327683, 131072, 0, 262148, 65536, 0, 196612, 65536, 0, 327684, 65536, 0, 196613, 262144, 0, 196614, 65536, 0, 196610, 65536, 0, 327682, 196608, 0, 327681, 65536, 0, 393220, 65536, 0, 196609, 65536, 0, 131073, 131072, 0, 131077, 65536, 0, 131078, 196608, 0, 65542, 131072, 0, 393218, 0, 0, 393219, 0, 0, 458753, 0, 0, 393216, 0, 0, 327680, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 196608, 0, 0, 131072, 0, 0, 65537, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 65541, 0, 0, 6, 0, 0, 65543, 0, 0, 131079, 0, 0, 196616, 0, 0, 262151, 0, 0, 262150, 0, 0, 327685, 0, 0, 393222, 0, 0, 458757, 0, 0, 458756, 0, 0, 327692, 0, 0, 393228, 0, 0, 458764, 0, 0, 524300, 0, 0, 589837, 0, 0, 655374, 0, 0, 589839, 0, 0, 589840, 0, 0, 655377, 0, 0, 524305, 0, 0, 589842, 0, 0, 458770, 0, 0, 393234, 0, 0, 327698, 0, 0, 262162, 0, 0, 196625, 0, 0, 196624, 0, 0, 196623, 0, 0, 262158, 0, 0, 262157, 0, 0)
-script = ExtResource("11_lb1lx")
+script = ExtResource("37_ag7s5")
 playerCity = NodePath("PlayerCity")
 enemyCity = NodePath("EnemyCity")
 
 [node name="PlayerCity" type="Node2D" parent="Tiles" node_paths=PackedStringArray("dialogText", "popup", "effectsNode", "otherCity")]
-script = ExtResource("9_puunn")
+script = ExtResource("38_fo4g3")
 dialogText = NodePath("../../UI/ColorRect2/Control/RichTextLabel3")
 popup = NodePath("../../UI/Popup")
-poofparticles = ExtResource("11_juohv")
-buildtimer = ExtResource("15_3h3lg")
+poofparticles = ExtResource("39_nfaje")
+buildtimer = ExtResource("19_g13o5")
 costs = Array[float]([0.0, 1.4, 2.8, 1.0])
 build_times = Array[float]([0.0, 5.0, 12.0, 7.0])
 effectsNode = NodePath("../../effects")
 otherCity = NodePath("../EnemyCity")
 
 [node name="EnemyCity" type="Node2D" parent="Tiles" node_paths=PackedStringArray("dialogText", "popup", "effectsNode", "otherCity")]
-script = ExtResource("9_puunn")
+script = ExtResource("38_fo4g3")
 dialogText = NodePath("../../UI/ColorRect2/Control/RichTextLabel3")
 popup = NodePath("../../UI/Popup")
-poofparticles = ExtResource("11_juohv")
-buildtimer = ExtResource("15_3h3lg")
+poofparticles = ExtResource("39_nfaje")
+buildtimer = ExtResource("19_g13o5")
 costs = Array[float]([0.0, 1.0, 2.0, 0.0])
 build_times = Array[float]([0.0, 4.0, 8.0, 0.0])
 effectsNode = NodePath("../../effects")
 otherCity = NodePath("../PlayerCity")
 
 [node name="EnemyAI" type="Node2D" parent="Tiles" node_paths=PackedStringArray("city")]
-script = ExtResource("14_uolep")
+script = ExtResource("40_sbaqu")
 city = NodePath("../EnemyCity")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Tiles"]
@@ -872,12 +872,12 @@ libraries = {
 }
 
 [node name="MouseoverTile" type="TileMap" parent="."]
-modulate = Color(1, 1, 1, 0.576111)
+modulate = Color(1, 1, 1, 0.657867)
 position = Vector2(32, 32)
 tile_set = SubResource("TileSet_n61r6")
 format = 2
 layer_0/tile_data = PackedInt32Array(655374, 2, 0)
-script = ExtResource("9_21pt5")
+script = ExtResource("41_7d2v2")
 speed = 3.0
 
 [node name="effects" type="Control" parent="."]
@@ -893,7 +893,7 @@ mouse_filter = 2
 [node name="Starsmask" type="Sprite2D" parent="effects"]
 position = Vector2(160, 63)
 scale = Vector2(2.39375, 2.39375)
-texture = ExtResource("17_1e58y")
+texture = ExtResource("42_d3aa4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="effects/Starsmask"]
 libraries = {
@@ -902,23 +902,24 @@ libraries = {
 
 [node name="Spaceship" type="Sprite2D" parent="effects/Starsmask"]
 position = Vector2(-324, 0)
-texture = ExtResource("18_pfog8")
+texture = ExtResource("43_lsd5g")
 hframes = 2
-script = ExtResource("19_2wvly")
+frame = 1
+script = ExtResource("44_cun4w")
 
 [node name="Lazer" type="Sprite2D" parent="effects/Starsmask"]
 visible = false
 position = Vector2(1, 1)
-texture = ExtResource("19_ou8ug")
-script = ExtResource("20_odq5i")
+texture = ExtResource("45_xyita")
+script = ExtResource("46_6upsy")
 
 [node name="CombatController" type="Node2D" parent="." node_paths=PackedStringArray("playerCity", "enemyCity", "effectsNode", "dialogText")]
-script = ExtResource("16_asr7m")
+script = ExtResource("47_drxmo")
 playerCity = NodePath("../Tiles/PlayerCity")
 enemyCity = NodePath("../Tiles/EnemyCity")
 effectsNode = NodePath("../effects")
-missileLaunch = ExtResource("14_gcoul")
-missileAttack = ExtResource("13_56nfw")
+missileLaunch = ExtResource("48_wexje")
+missileAttack = ExtResource("49_i0naq")
 dialogText = NodePath("../UI/ColorRect2/Control/RichTextLabel3")
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]

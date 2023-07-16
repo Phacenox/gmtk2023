@@ -1,0 +1,48 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cddhr44o74cwy"]
+
+[ext_resource type="Texture2D" uid="uid://rl7s31rqdfhk" path="res://theme/themeassets/emblem2.png" id="1_dq1sy"]
+[ext_resource type="Texture2D" uid="uid://c20w3oh4i3ibo" path="res://theme/themeassets/tex2.png" id="2_njn87"]
+[ext_resource type="Texture2D" uid="uid://dkryj2ul54o8u" path="res://theme/themeassets/tex2_iv.png" id="3_5sn08"]
+[ext_resource type="FontFile" uid="uid://doquktjpg5ujm" path="res://theme/themeassets/GhastlyPixe.ttf" id="4_i4sbq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nrxxs"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("2_njn87")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j0g2g"]
+texture = ExtResource("3_5sn08")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3imnb"]
+
+[resource]
+default_font = ExtResource("4_i4sbq")
+default_font_size = 16
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0.482353, 0.482353, 0.482353, 0.529412)
+PanelContainer/colors/PanelColor = Color(0.960784, 0.913725, 0.894118, 1)
+PanelContainer/icons/emblem = ExtResource("1_dq1sy")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_nrxxs")
+ProgressBar/colors/font_color = Color(0, 0, 0, 1)
+ProgressBar/styles/background = SubResource("StyleBoxTexture_j0g2g")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_3imnb")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/font_shadow_color = Color(0.482353, 0.482353, 0.482353, 0.529412)
