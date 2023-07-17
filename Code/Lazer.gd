@@ -1,6 +1,5 @@
 extends Sprite2D
 
-
 var state = 2
 var time = .15
 # Called every frame. 'delta' is the elapsed time since the previous frame.

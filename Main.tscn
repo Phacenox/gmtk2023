@@ -309,32 +309,36 @@ _data = {
 "planetize": SubResource("Animation_sk41s")
 }
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("tiles", "mouseoverTile", "portraitSprite", "dialogText", "finalTimerText", "fstTimerText", "finalTimer", "fstTimer", "UIBase", "contextMenu", "effectsNode", "enemyAI", "combatController", "playerCity", "enemyCity", "skiptutorialbutton", "popup")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("gameTiles", "mouseoverTiles", "dialog", "skiptutorialbutton", "popup", "contextMenu", "effectsNode", "combatController", "enemyAI", "playerCity", "enemyCity", "finalTimerText", "fstTimerText", "finalTimer", "fstTimer")]
 script = ExtResource("1_jdfcs")
-tiles = NodePath("Tiles")
-mouseoverTile = NodePath("MouseoverTile")
-portraitSprite = NodePath("UI/ColorRect2/Sprite-0001")
-dialogText = NodePath("UI/ColorRect2/Control/RichTextLabel3")
+gameTiles = NodePath("Tiles")
+mouseoverTiles = NodePath("MouseoverTile")
+dialog = NodePath("UI/ColorRect2/Control/RichTextLabel3")
+skiptutorialbutton = NodePath("UI/ColorRect2/buttons/PanelContainer")
+popup = NodePath("UI/Popup")
+contextMenu = NodePath("UI/ContextMenu")
+effectsNode = NodePath("effects")
+combatController = NodePath("CombatController")
+enemyAI = NodePath("Tiles/EnemyAI")
+playerCity = NodePath("Tiles/PlayerCity")
+enemyCity = NodePath("Tiles/EnemyCity")
 finalTimerText = NodePath("UI/ColorRect/Control/RichTextLabel")
 fstTimerText = NodePath("UI/ColorRect/Control/RichTextLabel2")
 finalTimer = NodePath("UI/ColorRect/Control/ColorRect")
 fstTimer = NodePath("UI/ColorRect/Control/ColorRect3")
-UIBase = NodePath("UI")
-contextMenu = NodePath("UI/ContextMenu")
 dropAnimation = ExtResource("2_4h1ad")
-effectsNode = NodePath("effects")
-enemyAI = NodePath("Tiles/EnemyAI")
-combatController = NodePath("CombatController")
-playerCity = NodePath("Tiles/PlayerCity")
-enemyCity = NodePath("Tiles/EnemyCity")
-skiptutorialbutton = NodePath("UI/ColorRect2/buttons/PanelContainer")
-popup = NodePath("UI/Popup")
+
+[node name="CombatController" type="Node2D" parent="." node_paths=PackedStringArray("game")]
+script = ExtResource("47_drxmo")
+game = NodePath("..")
+missileLaunch = ExtResource("48_wexje")
+missileAttack = ExtResource("49_i0naq")
 
 [node name="Audio" type="Node2D" parent="."]
 script = ExtResource("3_egoaf")
 sounds = Array[AudioStream]([ExtResource("4_as1ig"), ExtResource("5_80eqr"), ExtResource("6_6qj6r"), ExtResource("7_r4de4"), ExtResource("8_2xl8x"), ExtResource("9_gkhon"), ExtResource("10_iho0u"), ExtResource("11_1j1yl"), ExtResource("12_ll2o1")])
 
-[node name="Button" type="Button" parent="."]
+[node name="InputCatcher" type="Button" parent="."]
 offset_left = -6.0
 offset_top = -7.0
 offset_right = 649.0
@@ -840,27 +844,23 @@ script = ExtResource("37_ag7s5")
 playerCity = NodePath("PlayerCity")
 enemyCity = NodePath("EnemyCity")
 
-[node name="PlayerCity" type="Node2D" parent="Tiles" node_paths=PackedStringArray("dialogText", "popup", "effectsNode", "otherCity")]
+[node name="PlayerCity" type="Node2D" parent="Tiles" node_paths=PackedStringArray("game", "otherCity")]
 script = ExtResource("38_fo4g3")
-dialogText = NodePath("../../UI/ColorRect2/Control/RichTextLabel3")
-popup = NodePath("../../UI/Popup")
+game = NodePath("../..")
 poofparticles = ExtResource("39_nfaje")
 buildtimer = ExtResource("19_g13o5")
+otherCity = NodePath("../EnemyCity")
 costs = Array[float]([0.0, 1.4, 2.8, 1.0])
 build_times = Array[float]([0.0, 5.0, 12.0, 7.0])
-effectsNode = NodePath("../../effects")
-otherCity = NodePath("../EnemyCity")
 
-[node name="EnemyCity" type="Node2D" parent="Tiles" node_paths=PackedStringArray("dialogText", "popup", "effectsNode", "otherCity")]
+[node name="EnemyCity" type="Node2D" parent="Tiles" node_paths=PackedStringArray("game", "otherCity")]
 script = ExtResource("38_fo4g3")
-dialogText = NodePath("../../UI/ColorRect2/Control/RichTextLabel3")
-popup = NodePath("../../UI/Popup")
+game = NodePath("../..")
 poofparticles = ExtResource("39_nfaje")
 buildtimer = ExtResource("19_g13o5")
+otherCity = NodePath("../PlayerCity")
 costs = Array[float]([0.0, 1.0, 2.0, 0.0])
 build_times = Array[float]([0.0, 4.0, 8.0, 0.0])
-effectsNode = NodePath("../../effects")
-otherCity = NodePath("../PlayerCity")
 
 [node name="EnemyAI" type="Node2D" parent="Tiles" node_paths=PackedStringArray("city")]
 script = ExtResource("40_sbaqu")
@@ -872,7 +872,7 @@ libraries = {
 }
 
 [node name="MouseoverTile" type="TileMap" parent="."]
-modulate = Color(1, 1, 1, 0.657867)
+modulate = Color(1, 1, 1, 0.61251)
 position = Vector2(32, 32)
 tile_set = SubResource("TileSet_n61r6")
 format = 2
@@ -904,7 +904,6 @@ libraries = {
 position = Vector2(-324, 0)
 texture = ExtResource("43_lsd5g")
 hframes = 2
-frame = 1
 script = ExtResource("44_cun4w")
 
 [node name="Lazer" type="Sprite2D" parent="effects/Starsmask"]
@@ -913,17 +912,8 @@ position = Vector2(1, 1)
 texture = ExtResource("45_xyita")
 script = ExtResource("46_6upsy")
 
-[node name="CombatController" type="Node2D" parent="." node_paths=PackedStringArray("playerCity", "enemyCity", "effectsNode", "dialogText")]
-script = ExtResource("47_drxmo")
-playerCity = NodePath("../Tiles/PlayerCity")
-enemyCity = NodePath("../Tiles/EnemyCity")
-effectsNode = NodePath("../effects")
-missileLaunch = ExtResource("48_wexje")
-missileAttack = ExtResource("49_i0naq")
-dialogText = NodePath("../UI/ColorRect2/Control/RichTextLabel3")
-
-[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
-[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[connection signal="button_down" from="InputCatcher" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="InputCatcher" to="." method="_on_button_button_up"]
 [connection signal="button_down" from="UI/ColorRect2/buttons/PanelContainer/Button" to="." method="_skip_tutorial"]
 [connection signal="button_down" from="UI/ContextMenu/Vlist/PanelContainer/Button" to="UI/ContextMenu" method="_on_button_button_down" binds= [0]]
 [connection signal="button_down" from="UI/ContextMenu/Vlist/PanelContainer2/Button" to="UI/ContextMenu" method="_on_button_button_down" binds= [1]]

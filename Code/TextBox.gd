@@ -4,14 +4,10 @@ extends RichTextLabel
 @export var effectsNode: Control
 @export var sprite: Sprite2D
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	visible_characters = 0
-	pass # Replace with function body.
-
 
 var t = 0.03
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	t -= delta
 	if t < 0:

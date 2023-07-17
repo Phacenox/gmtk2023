@@ -26,7 +26,6 @@ func do_initialize():
 	await(get_tree().create_timer(0.5).timeout)
 	visible = false
 
-
 func change_themes(to: Theme):
 	get_node("/root/Game/Audio").play(6)
 	show_bar()
@@ -46,7 +45,6 @@ func change_themes(to: Theme):
 		$Control/ColorRect2.value = t/time
 		t += get_process_delta_time()
 		await get_tree().process_frame
-			
 	
 	$Control/ColorRect2.value = 1
 	

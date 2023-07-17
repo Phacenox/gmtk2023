@@ -54,11 +54,9 @@ func ZoomOut():
 	copy.queue_free()
 
 
-
 func build(what, where):
 	await get_tree().create_timer(randf()).timeout
 	playerCity.build(what, where, true)
-
 
 func tiles_of(x: int, y: int):
 	var start = Vector2i(x, y) * 2 - Vector2i(10, 10)

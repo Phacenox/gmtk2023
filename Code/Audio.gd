@@ -1,14 +1,15 @@
 extends Node2D
 
 @export var sounds: Array[AudioStream]
-var players
+var stream_players: Array[AudioStreamPlayer]
 
 func _ready():
-	players = []
+	stream_players = []
 	for i in sounds:
-		var n: AudioStreamPlayer = AudioStreamPlayer.new()
-		add_child(n)
-		n.stream = i
-		players.append(n)
+		var player = AudioStreamPlayer.new()
+		add_child(player)
+		player.stream = i
+		stream_players.append(player)
+
 func play(i):
-	(players[i] as AudioStreamPlayer).play()
+	stream_players[i].play()
